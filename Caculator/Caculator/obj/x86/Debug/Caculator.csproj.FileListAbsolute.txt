@@ -1,0 +1,8 @@
+C:\Users\rachel\Documents\Visual Studio 2013\Projects\Caculator\Caculator\bin\Debug\WindowsApplication.exe.config
+C:\Users\rachel\Documents\Visual Studio 2013\Projects\Caculator\Caculator\bin\Debug\WindowsApplication.exe
+C:\Users\rachel\Documents\Visual Studio 2013\Projects\Caculator\Caculator\bin\Debug\WindowsApplication.pdb
+C:\Users\rachel\Documents\Visual Studio 2013\Projects\Caculator\Caculator\obj\x86\Debug\Caculator.Form1.resources
+C:\Users\rachel\Documents\Visual Studio 2013\Projects\Caculator\Caculator\obj\x86\Debug\Caculator.Properties.Resources.resources
+C:\Users\rachel\Documents\Visual Studio 2013\Projects\Caculator\Caculator\obj\x86\Debug\Caculator.csproj.GenerateResource.Cache
+C:\Users\rachel\Documents\Visual Studio 2013\Projects\Caculator\Caculator\obj\x86\Debug\WindowsApplication.exe
+C:\Users\rachel\Documents\Visual Studio 2013\Projects\Caculator\Caculator\obj\x86\Debug\WindowsApplication.pdb
