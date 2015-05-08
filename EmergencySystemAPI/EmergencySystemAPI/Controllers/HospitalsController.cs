@@ -8,12 +8,20 @@ using System.Web;
 using System.Web.Mvc;
 using EmergencySystemAPI.DAL;
 using EmergencySystemAPI.Models;
+using System.Xml;
+using System.Web.Http.Cors;
+
 
 namespace EmergencySystemAPI.Controllers
 {
+    [EnableCors(origins: "*", headers:"*", methods: "*")]
     public class HospitalsController : Controller
     {
         private EmergencyContext db = new EmergencyContext();
+        public IEnumerable<String> test()
+        {
+            return new List<String> { "test1", "test2" };
+        }
 
         // GET: Hospitals
         public ActionResult Index()
@@ -21,13 +29,82 @@ namespace EmergencySystemAPI.Controllers
             return View(db.Hospitals.ToList());
         }
 
+        // GET: Hospitals/HospitalWithER
         public ActionResult HospitalWithER()
         {
             var hospitals = from h in db.Hospitals
+                            where h.Emergency==true
                             select h;
-            hospitals = hospitals.Where(h => h.Emergency.Equals(true));
+            //hospitals = hospitals.Where(h => h.Emergency.Equals(true));
             return View(hospitals.ToList());
         }
+
+        // GET: Hospitals/NearestHospital
+        public ActionResult NearestHospital(double lat, double lng)
+        {
+            var hospitals = from h in db.Hospitals
+                            where h.Emergency==true
+                            select h;
+            //hospitals = hospitals.Where(h => h.Emergency.Equals(true));
+            String startPoint = lat + "," + lng;
+            Hospital nearest = null;
+            try
+            {
+                int nearestTime = Int32.MaxValue;
+                foreach (var item in hospitals)
+                {
+                    String endPoint = item.AddressNo + item.AddressStreet + "," +
+                        item.AddressCity + "," + item.AddressState;
+
+                    if (int.Parse(getTravelTime(startPoint, endPoint)) < nearestTime)
+                    {
+                        nearestTime = int.Parse(getTravelTime(startPoint, endPoint));
+                        nearest = item;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                //
+            }         
+            return View(nearest);
+        }
+
+        //helper function for get nearest hospital
+        protected String getTravelTime(String startLocation, String endLocation)
+        {
+            String result = null;
+            try
+            {
+                String strResult;
+                DateTime dt = DateTime.UtcNow;
+                DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+                int s = (int)(dt - epoch).TotalSeconds;
+                String now = s.ToString();
+                var url = "https://maps.googleapis.com/maps/api/directions/xml?origin=" + startLocation + "&destination=" + endLocation + "&key=AIzaSyBBRvdqkbesH8r1nWFuvF5sbBPu5i-bE-I&departure_time=" + now;
+
+                using (var client = new WebClient())
+                {
+                    strResult = client.DownloadString(url);
+                }
+                XmlDocument xml = new XmlDocument();
+                xml.LoadXml(strResult); // suppose that myXmlString contains "<Names>...</Names>"
+
+                XmlNodeList xnList = xml.SelectNodes("DirectionsResponse/route/leg/duration");
+                XmlNode xn = xnList[0];
+                result = xn["value"].InnerText;
+            }
+            catch
+            {
+                //this.TextBox1.Text = "offline";
+                //String[] start = startLocation.Split(',');
+                //String[] end = endLocation.Split(',');
+                //result = (Math.Sqrt((int.Parse(start[0]) - int.Parse(end[0])) ^ 2 + (int.Parse(start[1]) - int.Parse(end[1])) ^ 2) / 2400).ToString();
+            }
+            return result;
+        }
+
+
 
         // GET: Hospitals/Details/5
         public ActionResult Details(int? id)

@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
+
+
 
 namespace EmergencySystemAPI.Models
 {
     public class Hospital
     {
+
         public int Id { get; set; }
+        [Key]
         public string Name { get; set; }
         public string Website { get; set; }
         public string AddressNo { get; set; }
@@ -16,6 +21,6 @@ namespace EmergencySystemAPI.Models
         public string AddressState { get; set; }
         public string AddressZip { get; set; }
         public Boolean Emergency { get; set; }
-        public virtual ICollection<Ambulance> Ambulances { get; set; }
+        
     }
 }

@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
+using System.Web.Http.Cors;
 
 namespace EmergencySystemAPI
 {
@@ -12,6 +13,9 @@ namespace EmergencySystemAPI
     {
         public static void Register(HttpConfiguration config)
         {
+            //enable cross-domain requrest
+            //var cors = new EnableCorsAttribute("http://emergencysystemapi.azurewebsites.net/", "*", "*");
+            //config.EnableCors(cors);
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();

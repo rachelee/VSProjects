@@ -39,24 +39,24 @@ namespace EmergencySystemAPI.DAL
 
             hospitals.ForEach(h => context.Hospitals.Add(h));
             context.SaveChanges(); //help to locate error when exception occurs
-            var ambulances = new List<Ambulance>
-            {
-            new Ambulance{HospitalId=2,Status=Status.idle},
-            new Ambulance{HospitalId=2,Status=Status.idle},
-            new Ambulance{HospitalId=3,Status=Status.idle},
-            new Ambulance{HospitalId=4,Status=Status.idle},
-            new Ambulance{HospitalId=5,Status=Status.idle},
-            new Ambulance{HospitalId=5,Status=Status.idle},
-            new Ambulance{HospitalId=5,Status=Status.idle},
-            new Ambulance{HospitalId=8,Status=Status.idle},
-            new Ambulance{HospitalId=9,Status=Status.idle},
-            new Ambulance{HospitalId=9,Status=Status.idle},
-            new Ambulance{HospitalId=9,Status=Status.idle},
-            new Ambulance{HospitalId=10,Status=Status.idle},
-            new Ambulance{HospitalId=10,Status=Status.idle}
-            };
-            ambulances.ForEach(a => context.Ambulances.Add(a));
-            context.SaveChanges();//help to locate error when exception occurs
+            //var ambulances = new List<Ambulance>
+            //{
+            //new Ambulance{HospitalId=2,Status=Status.idle},
+            //new Ambulance{HospitalId=2,Status=Status.idle},
+            //new Ambulance{HospitalId=3,Status=Status.idle},
+            //new Ambulance{HospitalId=4,Status=Status.idle},
+            //new Ambulance{HospitalId=5,Status=Status.idle},
+            //new Ambulance{HospitalId=5,Status=Status.idle},
+            //new Ambulance{HospitalId=5,Status=Status.idle},
+            //new Ambulance{HospitalId=8,Status=Status.idle},
+            //new Ambulance{HospitalId=9,Status=Status.idle},
+            //new Ambulance{HospitalId=9,Status=Status.idle},
+            //new Ambulance{HospitalId=9,Status=Status.idle},
+            //new Ambulance{HospitalId=10,Status=Status.idle},
+            //new Ambulance{HospitalId=10,Status=Status.idle}
+            //};
+            //ambulances.ForEach(a => context.Ambulances.Add(a));
+            //context.SaveChanges();//help to locate error when exception occurs
             
         }
     }

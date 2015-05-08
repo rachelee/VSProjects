@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-EmergencySystemAPI-20150429024654.mdf;Initial Catalog=aspnet-EmergencySystemAPI-20150429024654;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\rachel\\Documents\\Visual\ Studio\ 2013\\Projects\\EmergencySystemAPI\\EmergencySystemAPI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="EmergencyContext-Web.config Connection String" description="EmergencyContext Connection String used in web.config by the application to access the database." defaultValue="EmergencyContext_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\rachel\\Documents\\Visual\ Studio\ 2013\\Projects\\EmergencySystemAPI\\EmergencySystemAPI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='EmergencyContext']/@connectionString" />
+  </parameter>
+</parameters>

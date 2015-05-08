@@ -12,12 +12,13 @@ namespace EmergencySystemAPI.DAL
         }
 
         public DbSet<Hospital> Hospitals { get; set; }
-        public DbSet<Ambulance> Ambulances { get; set; }
+        //public DbSet<Ambulance> Ambulances { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Ambulance>().HasKey(t => new { t.HospitalId, t.Id });
+            //modelBuilder.Entity<Ambulance>().HasKey(t => new { t.HospitalId, t.Id });
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
     }
 }

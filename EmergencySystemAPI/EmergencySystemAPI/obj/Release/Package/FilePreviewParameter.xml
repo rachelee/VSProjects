@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="EmergencySystemAPI" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\rachel\\Documents\\Visual\ Studio\ 2013\\Projects\\EmergencySystemAPI\\EmergencySystemAPI\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\rachel\\Documents\\Visual\ Studio\ 2013\\Projects\\EmergencySystemAPI\\EmergencySystemAPI\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=tcp:j610wpuabn.database.windows.net,1433;Initial Catalog=EmergencySystemAPI_db;User Id=project285@j610wpuabn;Password=2015spring!;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\rachel\\Documents\\Visual\ Studio\ 2013\\Projects\\EmergencySystemAPI\\EmergencySystemAPI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="EmergencyContext-Web.config Connection String" description="" value="Data Source=tcp:j610wpuabn.database.windows.net,1433;Initial Catalog=EmergencySystemAPI_db;User Id=project285@j610wpuabn;Password=2015spring!;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\rachel\\Documents\\Visual\ Studio\ 2013\\Projects\\EmergencySystemAPI\\EmergencySystemAPI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='EmergencyContext']/@connectionString" />
+  </parameter>
+</parameters>
