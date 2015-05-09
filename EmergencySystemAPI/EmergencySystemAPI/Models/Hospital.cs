@@ -10,9 +10,8 @@ namespace EmergencySystemAPI.Models
 {
     public class Hospital
     {
-
-        public int Id { get; set; }
         [Key]
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Website { get; set; }
         public string AddressNo { get; set; }

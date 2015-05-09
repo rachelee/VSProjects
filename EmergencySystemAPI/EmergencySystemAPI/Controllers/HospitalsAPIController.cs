@@ -70,6 +70,68 @@ namespace EmergencySystemAPI.Controllers
             return Ok(nearest);
         }
 
+        // GET: 
+        [Route("api/HospitalsAPI/NearestHospital"), HttpGet]
+        [ResponseType(typeof(Hospital))]
+        public String NearestHospital(string address)
+        {
+            string lat;
+            string lng;
+            try
+            {
+                String strResult;
+                var url = "https://maps.googleapis.com/maps/api/geocode/xml?address=" + address + "&key=AIzaSyA-1WrgrK-s9zq3VSJYkxJS4y1uxTG_u9k";
+
+                using (var client = new WebClient())
+                {
+                    strResult = client.DownloadString(url);
+                }
+                XmlDocument xml = new XmlDocument();
+                xml.LoadXml(strResult); // suppose that myXmlString contains "<Names>...</Names>"
+
+                XmlNodeList xnList = xml.SelectNodes("GeocodeResponse/result/geometry/location");
+                XmlNode xn = xnList[0];
+
+                lat = xn["lat"].InnerText;
+                lng = xn["lng"].InnerText;
+            }
+            catch (Exception e)
+            {
+                lat = "0";
+                lng = "0";
+            }
+            var hospitals = from h in db.Hospitals
+                            where h.Emergency == true
+                            select h;
+            //hospitals = hospitals.Where(h => h.Emergency.Equals(true));
+            String startPoint = lat + "," + lng;
+            Hospital nearest = null;
+            try
+            {
+                int nearestTime = Int32.MaxValue;
+                foreach (var item in hospitals)
+                {
+                    String endPoint = item.AddressNo + item.AddressStreet + "," +
+                        item.AddressCity + "," + item.AddressState;
+
+                    if (int.Parse(getTravelTime(startPoint, endPoint)) < nearestTime)
+                    {
+                        nearestTime = int.Parse(getTravelTime(startPoint, endPoint));
+                        nearest = item;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                //
+            }
+            
+            String Name = nearest.Name;
+            String Address = nearest.AddressNo + " " + nearest.AddressStreet + "," + nearest.AddressCity + "," + nearest.AddressState;
+            String returnResult = Name + "/" + Address;
+            return returnResult;
+        }
+
         //helper function for get nearest hospital
         protected String getTravelTime(String startLocation, String endLocation)
         {
@@ -106,7 +168,7 @@ namespace EmergencySystemAPI.Controllers
         // GET: api/HospitalsAPI/5
         //[Route("api/HospitalsAPI/GetHospital/{id}"), HttpGet]
         [ResponseType(typeof(Hospital))]
-        public IHttpActionResult GetHospital(String id)
+        public IHttpActionResult GetHospital(int? id)
         {
             Hospital hospital = db.Hospitals.Find(id);
             if (hospital == null)

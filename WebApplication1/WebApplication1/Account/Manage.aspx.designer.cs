@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication1.Account
-{
-
-
-    public partial class Manage
-    {
-
+namespace WebApplication1.Account {
+    
+    
+    public partial class Manage {
+        
         /// <summary>
         /// successMessage control.
         /// </summary>
@@ -22,45 +20,32 @@ namespace WebApplication1.Account
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder successMessage;
-
+        
         /// <summary>
-        /// setPassword control.
+        /// ChangePassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder setPassword;
-
+        protected global::System.Web.UI.WebControls.HyperLink ChangePassword;
+        
         /// <summary>
-        /// password control.
+        /// CreatePassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox password;
-
-
-
+        protected global::System.Web.UI.WebControls.HyperLink CreatePassword;
+        
         /// <summary>
-        /// confirmPassword control.
+        /// PhoneNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox confirmPassword;
-
-        /// <summary>
-        /// changePassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder changePassword;
-
-
+        protected global::System.Web.UI.WebControls.Label PhoneNumber;
     }
 }

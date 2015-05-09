@@ -85,3 +85,4 @@ C:\Users\rachel\Documents\Visual Studio 2013\Projects\EmergencySystemAPI\Emergen
 C:\Users\rachel\Documents\Visual Studio 2013\Projects\EmergencySystemAPI\EmergencySystemAPI\bin\System.Web.Cors.dll
 C:\Users\rachel\Documents\Visual Studio 2013\Projects\EmergencySystemAPI\EmergencySystemAPI\bin\System.Web.Http.Cors.dll
 C:\Users\rachel\Documents\Visual Studio 2013\Projects\EmergencySystemAPI\EmergencySystemAPI\bin\System.Web.Http.Cors.xml
+C:\Users\rachel\Documents\Visual Studio 2013\Projects\EmergencySystemAPI\EmergencySystemAPI\obj\Release\EmergencySystemAPI.csprojResolveAssemblyReference.cache

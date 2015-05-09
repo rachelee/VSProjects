@@ -40,8 +40,34 @@ namespace EmergencySystemAPI.Controllers
         }
 
         // GET: Hospitals/NearestHospital
-        public ActionResult NearestHospital(double lat, double lng)
+        public ActionResult NearestHospital(String address)
         {
+            string lat;
+            string lng;
+            try
+            {
+                String strResult;
+                var url = "https://maps.googleapis.com/maps/api/geocode/xml?address=" + address + "&key=AIzaSyA-1WrgrK-s9zq3VSJYkxJS4y1uxTG_u9k";
+
+                using (var client = new WebClient())
+                {
+                    strResult = client.DownloadString(url);
+                }
+                XmlDocument xml = new XmlDocument();
+                xml.LoadXml(strResult); // suppose that myXmlString contains "<Names>...</Names>"
+
+                XmlNodeList xnList = xml.SelectNodes("GeocodeResponse/result/geometry/location");
+                XmlNode xn = xnList[0];
+
+                lat = xn["lat"].InnerText;
+                lng = xn["lng"].InnerText;
+            }
+             catch (Exception e)
+            {
+                lat = "0";
+                lng = "0";
+            }
+            
             var hospitals = from h in db.Hospitals
                             where h.Emergency==true
                             select h;
@@ -81,7 +107,7 @@ namespace EmergencySystemAPI.Controllers
                 DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
                 int s = (int)(dt - epoch).TotalSeconds;
                 String now = s.ToString();
-                var url = "https://maps.googleapis.com/maps/api/directions/xml?origin=" + startLocation + "&destination=" + endLocation + "&key=AIzaSyBBRvdqkbesH8r1nWFuvF5sbBPu5i-bE-I&departure_time=" + now;
+                var url = "https://maps.googleapis.com/maps/api/directions/xml?origin=" + startLocation + "&destination=" + endLocation + "&key=AIzaSyA-1WrgrK-s9zq3VSJYkxJS4y1uxTG_u9k&departure_time=" + now;
 
                 using (var client = new WebClient())
                 {
@@ -113,7 +139,15 @@ namespace EmergencySystemAPI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hospital hospital = db.Hospitals.Find(id);
+            var hospitals = from h in db.Hospitals
+                            where h.Id == id
+                            select h;
+            Hospital hospital=null;
+
+            foreach(var item in hospitals)
+            {
+                hospital = item;
+            }
             if (hospital == null)
             {
                 return HttpNotFound();
